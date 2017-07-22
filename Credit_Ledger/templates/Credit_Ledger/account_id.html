@@ -1,11 +1,3 @@
-<p>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-  {% if account_id %}
-      <ul>
-      {% for id in account_id %}
-          <li><a href="/account_id/{{id.account_id }}/"> {{id.account_id}} </a></li>
-      {% endfor %}
-      </ul>
-  {% else %}
-      <p>No polls are available.</p>
-  {% endif %}
+<p> Account id = {{account_id}} </p>
