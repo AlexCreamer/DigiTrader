@@ -1,1 +1,12 @@
-<p> Hello world account_id </p>
+<p> Hello world account_id:  {{account_id.0}}
+
+
+  {% if account_id %}
+      <ul>
+      {% for id in account_id %}
+          <li><a href="/account_id/{{ id.account_id }}/"> id.account_id </a></li>
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>No polls are available.</p>
+  {% endif %}
