@@ -36,8 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +123,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Django registration redux tags
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.

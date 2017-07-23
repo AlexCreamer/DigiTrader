@@ -4,8 +4,8 @@ from . import views
 
 urlpatterns = [
     # ex: /credits/
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.IndexView.as_view(), name='index'),
     # ex: /credits/5/
-    url(r'^account_id/(?P<account_id>[0-9]+)/$', views.account_detail, name='account_detail'),
-
+    url(r'^account_id/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='account_detail'),
+    url(r'^create_account/$', views.UserFormView, name='account_detail'),
 ]

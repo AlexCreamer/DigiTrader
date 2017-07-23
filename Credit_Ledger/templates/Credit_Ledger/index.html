@@ -1,1 +1,9 @@
-<p> Hello world </p>
+{% block body %}
+
+    <ul>
+      {% for account in object_list %}
+        <li><a href="{% url 'account:detail' account.id %}">{{ account.id}}</a></li>
+      {% endfor %}
+    </ul>
+
+{% endblock %}
