@@ -62,3 +62,14 @@ class UserFormView(View):
             # normalized (clean) data
             username = form.cleaned_data["username"]
             passsword = form.cleaned_data["username"]
+
+
+def auth_login(request):
+    template = loader.get_template("registration/login.html")
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+def auth_password_reset(request):
+    template = loader.get_template("registration/password_reset_form.html")
+    context = {}
+    return HttpResponse(template.render(context, request))

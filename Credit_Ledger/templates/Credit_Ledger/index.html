@@ -1,9 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
 {% block body %}
 
     <ul>
-      {% for account in object_list %}
-        <li><a href="{% url 'account:detail' account.id %}">{{ account.id}}</a></li>
-      {% endfor %}
+      Welcome to the index
     </ul>
 
 {% endblock %}

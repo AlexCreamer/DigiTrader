@@ -36,10 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration',
 ]
 
 MIDDLEWARE = [
@@ -125,4 +123,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #Django registration redux tags
-REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+REGISTRATION_OPEN = True
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "/accounts/login" # The page users are directredto if they are not logged in.
