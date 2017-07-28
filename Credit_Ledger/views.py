@@ -18,6 +18,11 @@ class IndexView(generic.ListView):
 #ex: /account_id/2
 class DetailView(generic.DetailView):
     template_name = "Credit_Ledger/account_id.html"
+    model = Account
+
+    def get_queryset(self):
+        account_id = self.kwargs['pk']
+        return Account.objects.all()
 
 def person_detail(request, person_id):
     return HttpResponse(
@@ -71,5 +76,10 @@ def auth_login(request):
 
 def auth_password_reset(request):
     template = loader.get_template("registration/password_reset_form.html")
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+def auth_logout(request):
+    template = loader.get_template("registration/logout.html")
     context = {}
     return HttpResponse(template.render(context, request))
