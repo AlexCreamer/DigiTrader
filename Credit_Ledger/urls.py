@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from registration.backends.simple.views import RegistrationView
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import logout
 
 from . import views
 
@@ -20,6 +21,5 @@ urlpatterns = [
     url(r'^accounts/password_reset/$', views.auth_password_reset , name='auth_password_reset'),
     url(r'^accounts/login/$', auth_views.LoginView.as_view(), name='auth_login'),
     url(r'^accounts/auth_password_change/$', auth_views.PasswordChangeView.as_view(), name='auth_password_change'),
-    url(r'^accounts/auth_password_change_done/$', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),]
-
-#    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/accounts/login'}),
+    url(r'^accounts/auth_password_change_done/$', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
+    url(r'^accounts/logout/$',  logout, {'next_page': '/accounts/login'}, name="auth_logout")]
