@@ -21,8 +21,12 @@ class DetailView(generic.DetailView):
     model = Account
 
     def get_queryset(self):
-        account_id = self.kwargs['pk']
         return Account.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        context['account_id'] = self.kwargs['pk']
+        return context
 
 def person_detail(request, person_id):
     return HttpResponse(
