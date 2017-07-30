@@ -2,7 +2,9 @@
 {% load i18n %}
 {% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static './style.css'%}"
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css'%}>"
+{% endblock %}
 
 {% block body %}
 

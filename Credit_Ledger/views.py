@@ -21,7 +21,7 @@ class DetailView(generic.DetailView):
     model = Account
 
     def get_queryset(self):
-        return Account.objects.
+        return Account.objects.filter(id=self.kwargs['pk']).first()
 
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)

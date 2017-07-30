@@ -2,6 +2,10 @@ from django.conf.urls import include, url
 from registration.backends.simple.views import RegistrationView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import logout
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 from . import views
 
@@ -24,3 +28,5 @@ urlpatterns = [
     url(r'^accounts/auth_password_change_done/$', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
     url(r'^accounts/logout/$',  logout, {'next_page': '/accounts/login'}, name="auth_logout")
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()

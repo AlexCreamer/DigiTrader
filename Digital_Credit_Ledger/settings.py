@@ -120,9 +120,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_DIR = [os.path.join(BASE_DIR, "static"),]
 
-#Django registration redux tags
+STATIC_URL = 'static/'
+STATIC_ROOT = '/var/www/Credit_Ledger/static/'
+
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+STATICFILES_DIRS = (
+  os.path.join(SITE_ROOT, 'static/'),
+  "/var/www/Credit_Ledger/static/"
+)
+
+#Django registration tags
 REGISTRATION_OPEN = True
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = "/"
