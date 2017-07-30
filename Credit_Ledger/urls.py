@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^accounts/login/$', auth_views.LoginView.as_view(), name='auth_login'),
     url(r'^accounts/auth_password_change/$', auth_views.PasswordChangeView.as_view(), name='auth_password_change'),
     url(r'^accounts/auth_password_change_done/$', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
-    url(r'^accounts/logout/$',  logout, {'next_page': '/accounts/login'}, name="auth_logout")]
+    url(r'^accounts/logout/$',  logout, {'next_page': '/accounts/login'}, name="auth_logout")
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
