@@ -22,9 +22,7 @@ class AccountDetail(generic.DetailView):
 
     def get_queryset(self):
         all_objects = Account.objects.all()
-
         pk = int(self.kwargs['pk'])
-
         if pk > 0:
             if pk < len(all_objects):
                 return all_objects.filter(pk=pk)
