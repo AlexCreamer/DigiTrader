@@ -16,7 +16,7 @@ class IndexView(generic.ListView):
         return Account.objects.all()
 
 #ex: /account_id/2
-class DetailView(generic.DetailView):
+class AccountDetail(generic.DetailView):
     template_name = "Credit_Ledger/account_id.html"
     model = Account
 
@@ -36,7 +36,7 @@ class DetailView(generic.DetailView):
         return queryset
 
     def get_context_data(self, **kwargs):
-        context = super(DetailView, self).get_context_data(**kwargs)
+        context = super(AccountDetail, self).get_context_data(**kwargs)
         queryset = self.get_queryset()
         context['account_id'] = queryset[0].id
         context['balance'] = queryset[0].balance

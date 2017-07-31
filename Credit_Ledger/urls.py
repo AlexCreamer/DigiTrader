@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     # ex: /credits/5/
     url(r'^create_account/$', views.UserFormView, name='account_detail'),
-    url(r'^accounts/account_id/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='account_detail'),
+    url(r'^accounts/account_id/(?P<pk>[0-9]+)/$', views.AccountDetail.as_view(), name='account_detail'),
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
     url(r'^accounts/password_reset/$', views.auth_password_reset , name='auth_password_reset'),
     url(r'^accounts/login/$', auth_views.LoginView.as_view(), name='auth_login'),
