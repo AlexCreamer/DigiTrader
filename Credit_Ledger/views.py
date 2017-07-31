@@ -21,7 +21,19 @@ class DetailView(generic.DetailView):
     model = Account
 
     def get_queryset(self):
-        return Account.objects.filter(id=self.kwargs['pk']).first()
+        all_objects = Account.objects.all()
+
+        pk = int(self.kwargs['pk'])
+        if pk > 0:
+            if pk < len(all_objects):
+                return all_objects[pk-1]
+            else:
+                return None
+        else:
+            return None
+
+        print (queryset[account_id-1].id)
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
