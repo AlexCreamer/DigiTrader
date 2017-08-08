@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views import generic
 from .forms import UserForm
+from registration.backends.simple.views import RegistrationView
+
 
 from .models import Account
 
@@ -83,7 +85,7 @@ class UserFormView(View):
 
             # normalized (clean) data
             username = form.cleaned_data["username"]
-            passsword = form.cleaned_data["username"]
+            passsword = form.cleaned_data["password"]
 
 
 def auth_login(request):
@@ -100,3 +102,52 @@ def auth_logout(request):
     template = loader.get_template("registration/logout.html")
     context = {}
     return HttpResponse(template.render(context, request))
+
+# Create a new class that redirects the user to the index page, if successful at registering
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self,request):
+        return '/'
+
+    #This function was taken from Llennox at https://github.com/llennox/users/blob/master/views.py
+    def register(self, request):
+        print (request)
+        email_taken = False
+        username_taken = False
+        if request.user.is_authenticated():
+            return render(request, "index.html")
+        registration_form = RegistrationForm()
+        if request.method == 'POST':
+            if form.is_valid():
+                datas = {}
+                if User.objects.filter(username=form.cleaned_data['username']).exists():
+                   username_taken = True
+                   return render (request, 'registration/registration_form', {'form':registration_form,'username_taken': username_taken})
+                elif User.objects.filter(email=form.cleaned_data['email']).exists():
+                    email_taken = True
+                    return render(request, 'registration/registration_form', {'form':registration_form,'email_taken': email_taken})
+                datas['username']=form.cleaned_data['username']
+                datas['email']=form.cleaned_data['email']
+                datas['password1']=form.cleaned_data['password1']
+                salt = hashlib.sha1(str(random.random()).encode('utf-8')).hexdigest()[:5]
+                usernamesalt = datas['email']
+                if isinstance(usernamesalt, str):
+                     usernamesalt=str.encode(usernamesalt)
+                if isinstance(salt, str):
+                     salt=str.encode(salt)
+                
+                datas['activation_key']=hashlib.sha1(salt+usernamesalt).hexdigest()
+                datas['email_path']="/home/anox/sites/mc/static/ActivationEmail.txt"
+                datas['email_subject']="activate your account"
+                form.sendEmail(datas) #Send validation email
+                form.save(datas) #Save the user and his profile
+                request.session['registered']=True #For display purposes
+                return render(request, 'registration/registration_form.html', {'email_sent':True})
+        else:
+            registration_form = form #Display form with error messages (incorrect fields, etc
+            return render(request, 'registration/registration_form.html', {'form':registration_form})
+                  
+        if form.is_valid():
+            username = (form.cleaned_data['username'])
+        print ("Hello world")
+
+
