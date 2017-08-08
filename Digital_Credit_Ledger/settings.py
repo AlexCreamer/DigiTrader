@@ -127,3 +127,10 @@ REGISTRATION_OPEN = True
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "/accounts/login" # The page users are directredto if they are not logged in.
+
+#Email settings
+EMAIL_USE_TLS = True
+EMAIL_HOST = ""
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
+EMAIL_PORT = ""
