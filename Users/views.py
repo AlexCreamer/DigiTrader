@@ -30,9 +30,6 @@ def register_page(request):
             if User.objects.filter(username=form.cleaned_data['username']).exists():
                 username_taken = True
                 return render(request, 'register_page.html', {'form':registration_form,'username_taken': username_taken})
-            elif User.objects.filter(email=form.cleaned_data['email']).exists():
-                email_taken = True
-                return render(request, 'register_page.html', {'form':registration_form,'email_taken': email_taken})
             datas['username']=form.cleaned_data['username']
             datas['email']=form.cleaned_data['email']
             datas['password1']=form.cleaned_data['password1']
@@ -123,7 +120,7 @@ def reset_password(request): #send email with new password set new password, che
         u = User.objects.get(email=form.cleaned_data['email'])
         u.set_password(password)
         u.save()
-        send_mail('new password', 'hello, please log with this password and change it http://trendpinger.com/change_password/:' + password , 'gonnellcough@gmail.com', [form.cleaned_data['email']], fail_silently=False)
+        send_mail('new password', 'hello, please log with this password and change it 127.0.0.1:8000/change_password/:' + password , 'creamerprojects@gmail.com', [form.cleaned_data['email']], fail_silently=False)
         success = True
         return render(request,'passwordsent.html',{'success': success})
     
