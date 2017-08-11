@@ -10,6 +10,7 @@ from . import views
 urlpatterns = [
     # ex: /credits/
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^', include('Users.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

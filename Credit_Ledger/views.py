@@ -49,3 +49,18 @@ def account_detail(request, account_id):
         "account_id" : account_id,
     }
     return HttpResponse(template.render(context, request))
+
+def auth_login(request):
+    template = loader.get_template("registration/login.html")
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+def auth_password_reset(request):
+    template = loader.get_template("registration/password_reset_form.html")
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+def auth_logout(request):
+    template = loader.get_template("registration/logout.html")
+    context = {}
+    return HttpResponse(template.render(context, request))

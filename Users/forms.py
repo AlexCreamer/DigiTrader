@@ -5,7 +5,7 @@ from django.template import Context, Template
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
-from users.models import Profil
+from Users.models import Profil
 import datetime
 from django.utils import timezone
 import re 

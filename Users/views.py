@@ -1,13 +1,13 @@
 from django.shortcuts import redirect, HttpResponseRedirect, get_object_or_404, render
 from django.http import HttpResponse
 from django.views import View
-from users.models import Profil
+from Users.models import Profil
 from django.contrib.auth.models import User, Group
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
-from users.forms import RegistrationForm, SignInForm, ChangePassForm, EmailNewPass
+from Users.forms import RegistrationForm, SignInForm, ChangePassForm, EmailNewPass
 import hashlib, random, string
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required

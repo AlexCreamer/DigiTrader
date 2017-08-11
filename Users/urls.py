@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from users import views
+from Users import views
 from django.conf import settings
 from django.conf.urls.static import static
 

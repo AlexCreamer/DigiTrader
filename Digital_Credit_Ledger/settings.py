@@ -31,13 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'Credit_Ledger.apps.CreditLedgerConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Credit_Ledger.apps.CreditLedgerConfig',
+    'Users',
 ]
 
 MIDDLEWARE = [
