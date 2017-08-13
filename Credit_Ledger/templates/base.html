@@ -14,8 +14,8 @@
 
     {% if user.is_authenticated %}
         {% trans "Logged in" %}: {{ user.username }}
-        (<a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> |
-        <a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a>)
+        (<a href="{% url 'sign_page' %}">{% trans "Log out" %}</a> |
+        <a href="{% url 'change_password' %}">{% trans "Change password" %}</a>)
     {% else %}
        <a href="{% url 'sign_page' %}">{% trans "Log in" %}</a>
     {% endif %}

@@ -10,6 +10,7 @@ from . import views
 urlpatterns = [
     # ex: /credits/
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^account_id/?P<pk>[0-9]+/$', views.account_detail ),
     url(r'^', include('Users.urls')),
 ]
 
