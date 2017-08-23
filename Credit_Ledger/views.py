@@ -10,13 +10,6 @@ from registration.backends.simple.views import RegistrationView
 
 from .models import Account
 
-class IndexView(generic.ListView):
-    template_name = "Credit_Ledger/index.html"
-    context_object_name = "object_list"
-
-    def get_queryset(self):
-        return Account.objects.all()
-
 #ex: /account_id/2
 class AccountDetail(generic.DetailView):
     template_name = "Credit_Ledger/account_id.html"
@@ -36,7 +29,24 @@ class AccountDetail(generic.DetailView):
         return queryset
 
     def get_context_data(self, **kwargs):
+        print ("testing")
         context = super(AccountDetail, self).get_context_data(**kwargs)
+        queryset = self.get_queryset()
+        context['account_id'] = queryset[0].id
+        context['balance'] = queryset[0].balance
+        context['account_type'] = queryset[0].account_type
+        return context
+
+
+class IndexView(generic.ListView):
+    template_name = "Credit_Ledger/index.html"
+    context_object_name = "object_list"
+
+    def get_queryset(self):
+        return Account.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
         queryset = self.get_queryset()
         context['account_id'] = queryset[0].id
         context['balance'] = queryset[0].balance

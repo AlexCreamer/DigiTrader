@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
+\{% if user.is_authenticated %}
+    (testing)
+   {% trans "Logged in" %}: {{ user.username }}
+        ID equals {{account_id}}
+        Account type {{account_type}}
+        Balance equals {{balance}}        
+
 
 {% block content %}
 Index page
