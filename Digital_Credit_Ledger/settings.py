@@ -31,20 +31,18 @@ ALLOWED_HOSTS = []
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                # Already defined Django-related contexts here
-
-                # `allauth` needs this from django
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
-
-
 
 # Application definition
 
@@ -76,22 +74,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Digital_Credit_Ledger.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`

@@ -14,10 +14,10 @@
 
     {% if user.is_authenticated %}
         {% trans "Logged in" %}: {{ user.username }}
-        (<a href="{% url 'sign_page' %}">{% trans "Log out" %}</a> |
-        <a href="{% url 'change_password' %}">{% trans "Change password" %}</a>)
+        (<a href="{% url 'account_logout' %}">{% trans "Log out" %}</a> |
+        <a href="{% url 'account_change_password' %}">{% trans "Change password" %}</a>)
     {% else %}
-       <a href="{% url 'sign_page' %}">{% trans "Log in" %}</a>
+       <a href="{% url 'account_login' %}">{% trans "Log in" %}</a>
     {% endif %}
     <hr />
     {% endblock %}
@@ -32,6 +32,7 @@
         <hr />
     {% endblock %}
     </div>
+        
 </body>
 
 </html>
