@@ -1,10 +1,11 @@
+{% block css %}
 {% extends "base.html" %}
 {% load i18n %}
 \{% if user.is_authenticated %}
    {% trans "Logged in" %}: {{ user.username }}
         ID equals {{account_id}}
         Account type {{account_type}}
-        Balance equals {{balance}}     5f   
+        Balance equals {{balance}}       
 
 
 {% block content %}
