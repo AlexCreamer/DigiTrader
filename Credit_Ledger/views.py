@@ -6,7 +6,8 @@ from django.views.generic import View
 from django.views import generic
 from .forms import UserForm
 from registration.backends.simple.views import RegistrationView
-
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from .models import Account
 
@@ -43,8 +44,17 @@ class IndexView(generic.ListView):
     context_object_name = "object_list"
 
     def get_queryset(self):
-        return Account.objects.all()
-    
+        all_objects = Account.objects.all()
+        user = self.request.user
+        pk = user.id
+        if pk > 0:
+            if pk < len(all_objects):
+                return all_objects.filter(pk=pk)
+            else:
+                return None
+        
+        return None
+        
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         queryset = self.get_queryset()
