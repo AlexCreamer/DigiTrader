@@ -11,12 +11,22 @@ from registration.backends.simple.views import RegistrationView
 from .models import Account
 
 #ex: /account_id/2
-class AccountDetail(View):
+class AccountDetail(generic.DetailView):
     template_name = "Credit_Ledger/account_details.html"
     model = Account
     
     def get_queryset(self):
-        return Account.objects.all()
+         all_objects = Account.objects.all()
+         pk = int(self.kwargs['pk'])
+         if pk > 0:
+             if pk < len(all_objects):
+                 return all_objects.filter(pk=pk)
+             else:
+                 return None
+         else:
+             return None
+ 
+         return queryset
 
     def get_context_data(self, **kwargs):
         print ("testing")

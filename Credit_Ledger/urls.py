@@ -9,7 +9,7 @@ from . import views
 
 urlpatterns = [
     # ex: /credits/
-    url(r'^$', views.AccountDetail.as_view(), name='index'),
+    url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^account_id/([0-9]+)/$', views.AccountDetail.as_view(), name="account_details" ),
 ]
 
