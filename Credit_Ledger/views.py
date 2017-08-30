@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views import generic
@@ -19,14 +19,11 @@ class AccountDetail(generic.DetailView):
     def get_queryset(self):
          all_objects = Account.objects.all()
          pk = int(self.kwargs['pk'])
-         if pk > 0:
-             if pk < len(all_objects):
-                 return all_objects.filter(pk=pk)
-             else:
-                 return None
-         else:
-             return None
- 
+    
+         user = auth_user
+         my_object = get_object_or_404("auth_user", pk)
+        
+         queryset = all_objects.filter(pk=pk)
          return queryset
 
     def get_context_data(self, **kwargs):
@@ -47,21 +44,30 @@ class IndexView(generic.ListView):
         all_objects = Account.objects.all()
         user = self.request.user
         pk = user.id
-        if pk > 0:
-            if pk < len(all_objects):
-                return all_objects.filter(pk=pk)
-            else:
-                return None
+        if pk == None:
+            return None
+        elif pk > 0:
+            return all_objects.filter(pk=pk)
+        else:
+            raise Exception("User id is not None and is not greater than 0")
         
         return None
         
     def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        queryset = self.get_queryset()
-        context['account_id'] = queryset[0].id
-        context['balance'] = queryset[0].balance
-        context['account_type'] = queryset[0].account_type
-        return context
+        user = self.request.user
+        pk = user.id
+        
+        if pk == None:
+            return None
+        elif pk > 0:
+            context = super(IndexView, self).get_context_data(**kwargs)
+            queryset = self.get_queryset()
+            context['account_id'] = queryset[0].id
+            context['balance'] = queryset[0].balance
+            context['account_type'] = queryset[0].account_type
+            return context
+        else:
+            raise Exception("User id is not None and is not greater than 0")
 
 def account_detail(request, account_id):
     template = loader.get_template("Credit_Ledger/account_id.html")
