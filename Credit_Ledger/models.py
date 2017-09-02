@@ -5,6 +5,7 @@ from decimal import Decimal
 class Account(models.Model):
     balance = models.DecimalField(max_digits=30, decimal_places=6, default=Decimal(0.000000))
     account_type = models.CharField(max_length=100)
+    user_id = models.IntegerField()
 
 class User(models.Model):
     username = models.CharField(max_length=200)

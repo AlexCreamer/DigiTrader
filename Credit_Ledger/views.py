@@ -8,6 +8,7 @@ from .forms import UserForm
 from registration.backends.simple.views import RegistrationView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import Account
 
@@ -17,13 +18,13 @@ class AccountDetail(generic.DetailView):
     model = Account
     
     def get_queryset(self):
-         all_objects = Account.objects.all()
+         user_objects = User.objects.all()
          pk = int(self.kwargs['pk'])
     
          user = auth_user
          my_object = get_object_or_404("auth_user", pk)
         
-         queryset = all_objects.filter(pk=pk)
+         queryset = user_objects.filter(pk=pk)
          return queryset
 
     def get_context_data(self, **kwargs):
@@ -41,13 +42,14 @@ class IndexView(generic.ListView):
     context_object_name = "object_list"
 
     def get_queryset(self):
-        all_objects = Account.objects.all()
+        user_objects = User.objects.all()
         user = self.request.user
         pk = user.id
+        
         if pk == None:
             return None
         elif pk > 0:
-            return all_objects.filter(pk=pk)
+            return user_objects.filter(pk=pk)
         else:
             raise Exception("User id is not None and is not greater than 0")
         
@@ -62,9 +64,9 @@ class IndexView(generic.ListView):
         elif pk > 0:
             context = super(IndexView, self).get_context_data(**kwargs)
             queryset = self.get_queryset()
-            context['account_id'] = queryset[0].id
-            context['balance'] = queryset[0].balance
-            context['account_type'] = queryset[0].account_type
+            #context['account_id'] = queryset[0].id
+            #context['balance'] = queryset[0].balance
+            #context['account_type'] = queryset[0].account_type
             return context
         else:
             raise Exception("User id is not None and is not greater than 0")
