@@ -9,7 +9,7 @@ sudo apt-get install python3-dev postgresql postgresql-contrib django python-dja
 
 ### Only use the following if you're going to use pip instead of apt-get
 
-`pip install psycopg2, django-registration`
+`pip install -r requirements`
 
 ### Notes
 You might have to do the following before using runserver:
