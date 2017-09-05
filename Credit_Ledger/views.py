@@ -9,6 +9,7 @@ from registration.backends.simple.views import RegistrationView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .models import Account
 
 from .models import Account
 
@@ -41,18 +42,11 @@ class IndexView(generic.ListView):
     context_object_name = "object_list"
 
     def get_queryset(self):
-        user_objects = User.objects.all()
+        account_objects = Account.objects.all()
         user = self.request.user
-        pk = user.id
-        
-        if pk == None:
-            return None
-        elif pk > 0:
-            return user_objects.filter(pk=pk)
-        else:
-            raise Exception("User id is not None and is not greater than 0")
-        
-        return None
+        account_pk = user.account.id
+            
+        return account_objects.filter(pk=account_pk)
         
     def get_context_data(self, **kwargs):
         user = self.request.user
@@ -63,9 +57,12 @@ class IndexView(generic.ListView):
         elif pk > 0:
             context = super(IndexView, self).get_context_data(**kwargs)
             queryset = self.get_queryset()
-            #context['account_id'] = queryset[0].id
-            #context['balance'] = queryset[0].balance
-            #context['account_type'] = queryset[0].account_type
+            if queryset == None:
+                return context
+            else:
+                context['account_id'] = queryset[0].id
+                context['balance'] = queryset[0].balance
+                context['account_type'] = queryset[0].account_type
             return context
         else:
             raise Exception("User id is not None and is not greater than 0")
