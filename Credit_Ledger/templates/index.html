@@ -1,12 +1,14 @@
-{% block css %}
 {% extends "base.html" %}
+f4f
+{% block css %}
+{% endblock %}
 {% load i18n %}
-\{% if user.is_authenticated %}
+{% if user.is_authenticated %}
    {% trans "Logged in" %}: {{ user.username }}
         ID equals {{account_id}}
         Account type {{account_type}}
         Balance equals {{balance}}       
-
+{% endif %}
 
 {% block content %}
 {% endblock %}
