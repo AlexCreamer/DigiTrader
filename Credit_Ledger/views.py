@@ -28,7 +28,6 @@ class AccountDetail(generic.DetailView):
          return queryset
 
     def get_context_data(self, **kwargs):
-        print ("testing")
         context = super(AccountDetail, self).get_context_data(**kwargs)
         queryset = self.get_queryset()
         context['account_id'] = queryset[0].id
