@@ -19,12 +19,12 @@ class AccountDetail(generic.DetailView):
     model = Account
     
     def get_queryset(self):
-         user_objects = User.objects.all()
-         pk = int(self.kwargs['pk'])
+         account_objects = Account.objects.all()
+         pk = int(self.kwargs['pk'])   
     
          my_object = get_object_or_404(User, pk=pk)
         
-         queryset = user_objects.filter(pk=pk)
+         queryset = account_objects.filter(pk=my_object.account.id)
          return queryset
 
     def get_context_data(self, **kwargs):
@@ -38,7 +38,7 @@ class AccountDetail(generic.DetailView):
 
 
 class IndexView(generic.ListView):
-    template_name = "index.html"
+    template_name = "Credit_Ledger/index.html"
     context_object_name = "object_list"
 
     def get_queryset(self):

@@ -9,7 +9,14 @@
 {% block body %}
 
     <ul>
-      Welcome to the index
+      Welcome to the index fef
     </ul>
+    
+   {% if user.is_authenticated %}
+   {% trans "Logged in" %}: {{ user.username }} <br>
+        ID equals {{account_id}} <br> 
+        Account type {{account_type}} <br>
+        Balance equals {{balance}} <br>      
+   {% endif %}
 
 {% endblock %}
