@@ -152,12 +152,3 @@ EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 EMAIL_PORT = ""
 
-SOCIAL_AUTH_PIPELINE = (
-'social_auth.backends.pipeline.social.social_auth_user',
-'social_auth.backends.pipeline.user.get_username',
-'social_auth.backends.pipeline.user.create_user',
-'Credit_Ledger.pipeline.add_account',
-'social_auth.backends.pipeline.social.associate_user',
-'social_auth.backends.pipeline.social.load_extra_data',
-'social_auth.backends.pipeline.user.update_user_details',
-)
