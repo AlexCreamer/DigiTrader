@@ -5,4 +5,4 @@ class CreditLedgerConfig(AppConfig):
     name = 'Credit_Ledger'
 
     def ready(self):
-        import Credit_Ledger.signals.authentication
+        import Credit_Ledger.signals.custom_auth
