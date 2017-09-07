@@ -1,1 +1,3 @@
-pip install django-registration, psychopg2
+django
+psycopg2
+django-allauth

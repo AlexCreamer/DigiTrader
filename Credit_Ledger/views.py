@@ -5,12 +5,9 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views import generic
 from .forms import UserForm
-from registration.backends.simple.views import RegistrationView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Account
-
 from .models import Account
 
 #ex: /account_id/2
@@ -43,9 +40,11 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         account_objects = Account.objects.all()
         user = self.request.user
-        account_pk = user.account.id
-            
-        return account_objects.filter(pk=account_pk)
+        if user.is_anonymous:
+            return None
+        else:
+            account_pk = user.account.id
+            return account_objects.filter(pk=account_pk)
         
     def get_context_data(self, **kwargs):
         user = self.request.user
@@ -72,3 +71,23 @@ def account_detail(request, account_id):
         "account_id" : account_id,
     }
     return HttpResponse(template.render(context, request))
+
+def user_trade(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = UserForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            user = form.cleaned_data["User"]
+            print (user)
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = UserForm()
+
+    return render(request, 'index.html', {'form': form})

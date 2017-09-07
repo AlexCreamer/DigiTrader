@@ -9,14 +9,22 @@
 {% block body %}
 
     <ul>
-      Welcome to the index fef
+      Welcome to the index
     </ul>
     
    {% if user.is_authenticated %}
-   {% trans "Logged in" %}: {{ user.username }} <br>
         ID equals {{account_id}} <br> 
         Account type {{account_type}} <br>
         Balance equals {{balance}} <br>      
    {% endif %}
+   
+   <form action="/user-trade/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <label for="User trade">User to trade with</label>
+    <input id="User" type="text" name="User">
+    <input type="submit" value="OK">
+   </form>
+
 
 {% endblock %}

@@ -1,5 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css'%}>"
+{% endblock %}
+
+{% block body %}
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 Account Details Page
 <p> Account id = {{account_id}} </p>
 <p> Balance = {{balance}} </p>
 <p> Type = {{account_type}} </p> 
+
+{% endblock %}
