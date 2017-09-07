@@ -7,10 +7,6 @@
 {% endblock %}
 
 {% block body %}
-
-    <ul>
-      Welcome to the index
-    </ul>
     
    {% if user.is_authenticated %}
         ID equals {{account_id}} <br> 
@@ -21,9 +17,9 @@
    <form action="/user-trade/" method="post">
     {% csrf_token %}
     {{ form }}
-    <label for="User trade">User to trade with</label>
-    <input id="user" type="text" name="user"> <br>
-    <label>Amount to transfer</label>
+    <label for="pk">User to trade with</label>
+    <input id="pk" type="text" name="pk"> <br>
+    <label for="amount">Amount to transfer</label>
     <input id="amount" type="text" name="amount">
     <input type="submit" value="OK">
    </form>

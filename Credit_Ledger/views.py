@@ -78,17 +78,24 @@ def user_trade(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = UserForm(request.POST)
+        
         # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
             # redirect to a new URL:
-            user = form.cleaned_data["user"]
+            pk = form.cleaned_data["pk"]
             amount = form.cleaned_data["amount"]
-            print ("Amount " + str(amount))
-            return HttpResponseRedirect('/')
-        print(form.errors)
+            
+            if amount > 0:
+                a = Account.objects.get(pk=request.user.id)
+                a.balance = a.balance - amount
+                a.save()
+                
+                b = Account.objects.get(pk=pk)
+                b.balance = b.balance + amount
+                b.save()
 
+            return HttpResponseRedirect('/')
+        
     # if a GET (or any other method) we'll create a blank form
     else:
         form = UserForm()
