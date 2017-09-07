@@ -76,7 +76,6 @@ def account_detail(request, account_id):
 def user_trade(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
-        print ("hello")
         # create a form instance and populate it with data from the request:
         form = UserForm(request.POST)
         # check whether it's valid:
@@ -85,6 +84,8 @@ def user_trade(request):
             # ...
             # redirect to a new URL:
             user = form.cleaned_data["user"]
+            amount = form.cleaned_data["amount"]
+            print ("Amount " + str(amount))
             return HttpResponseRedirect('/')
         print(form.errors)
 
