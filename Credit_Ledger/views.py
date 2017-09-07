@@ -9,6 +9,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Account
+from django.http import HttpResponseRedirect
 
 #ex: /account_id/2
 class AccountDetail(generic.DetailView):
@@ -75,6 +76,7 @@ def account_detail(request, account_id):
 def user_trade(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
+        print ("hello")
         # create a form instance and populate it with data from the request:
         form = UserForm(request.POST)
         # check whether it's valid:
@@ -82,9 +84,9 @@ def user_trade(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            user = form.cleaned_data["User"]
-            print (user)
-            return HttpResponseRedirect('/thanks/')
+            user = form.cleaned_data["user"]
+            return HttpResponseRedirect('/')
+        print(form.errors)
 
     # if a GET (or any other method) we'll create a blank form
     else:
