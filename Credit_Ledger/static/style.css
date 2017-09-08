@@ -1,3 +1,7 @@
 body {
   background: grey;
 }
+
+textarea {
+  width: 20px;
+}

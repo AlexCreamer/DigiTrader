@@ -12,17 +12,20 @@
         ID equals {{account_id}} <br> 
         Account type {{account_type}} <br>
         Balance equals {{balance}} <br>      
-   {% endif %}
    
    <form action="/user-trade/" method="post">
     {% csrf_token %}
     {{ form }}
-    <label for="pk">User to trade with</label>
+    <label for="pk">ID of user to trade with</label>
     <input id="pk" type="text" name="pk"> <br>
     <label for="amount">Amount to transfer</label>
     <input id="amount" type="text" name="amount">
     <input type="submit" value="OK">
    </form>
+   {% endif %}
 
+  {% if user.is_staff %}
+    <
+  {% endif %}
 
 {% endblock %}

@@ -85,8 +85,9 @@ def user_trade(request):
             pk = form.cleaned_data["pk"]
             amount = form.cleaned_data["amount"]
             
-            if amount > 0:
-                a = Account.objects.get(pk=request.user.id)
+            print (amount)
+            a = Account.objects.get(pk=request.user.id)
+            if a.balance >= amount:
                 a.balance = a.balance - amount
                 a.save()
                 
