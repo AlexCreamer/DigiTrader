@@ -85,7 +85,6 @@ def user_trade(request):
             pk = form.cleaned_data["pk"]
             amount = form.cleaned_data["amount"]
             
-            print (amount)
             a = Account.objects.get(pk=request.user.id)
             if a.balance >= amount:
                 a.balance = a.balance - amount
@@ -101,4 +100,6 @@ def user_trade(request):
     else:
         form = UserForm()
 
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'Credit_Ledger/index.html', {'form': form})
+
+    

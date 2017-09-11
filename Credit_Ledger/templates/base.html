@@ -37,6 +37,14 @@
 
     <div id="footer">
     {% block footer %}
+        {% csrf_token %}
+        <form action="/user-trade/" method="post">
+            <label for="pk">ID of user to trade with</label>
+            {{ form.pk }} <br>
+            <label for="amount">Amount to transfer</label>
+            {{ form.amount }} <br>
+            <input type="submit" value="OK">
+        </form>
         <hr />
         ---
     {% endblock %}
