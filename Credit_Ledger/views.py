@@ -4,12 +4,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views import generic
-from .forms import UserForm
+from .forms import UserForm, GrantForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Account
 from django.http import HttpResponseRedirect
+from django.contrib.admin.views.decorators import staff_member_required
 
 #ex: /account_id/2
 class AccountDetail(generic.DetailView):
@@ -102,4 +103,11 @@ def user_trade(request):
 
     return render(request, 'Credit_Ledger/index.html', {'form': form})
 
-    
+@staff_member_required
+def grant(request):
+    if request.method == 'POST':
+        form = GrantForm(request.POST)
+
+        if form.is_valid():
+            pk = form.cleaned_data["pk"]
+            amount = form.cleaned_data["amount"]

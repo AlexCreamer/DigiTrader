@@ -4,3 +4,7 @@ from django import forms
 class UserForm(forms.Form):
     pk = forms.IntegerField(label='User to trade with')
     amount = forms.IntegerField(label='Amount to trade')
+    
+class GrantForm(forms.Form):
+    pk = forms.IntegerField(label='User to grants credits to')
+    amount = forms.IntegerField(label='Amount to grant')
