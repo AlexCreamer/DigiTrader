@@ -104,7 +104,7 @@ def user_trade(request):
     return render(request, 'Credit_Ledger/index.html', {'form': form})
 
 @staff_member_required
-def grant(request):
+def user_grant(request):
     if request.method == 'POST':
         form = GrantForm(request.POST)
 

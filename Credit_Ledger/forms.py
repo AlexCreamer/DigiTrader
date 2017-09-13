@@ -6,5 +6,5 @@ class UserForm(forms.Form):
     amount = forms.IntegerField(label='Amount to trade')
     
 class GrantForm(forms.Form):
-    pk = forms.IntegerField(label='User to grants credits to')
-    amount = forms.IntegerField(label='Amount to grant')
+    pk = forms.IntegerField(label='User to grants credits to', widget="Textarea")
+    amount = forms.IntegerField(label='Amount to grant', widget="Textarea")
