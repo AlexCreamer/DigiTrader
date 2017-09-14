@@ -2,6 +2,6 @@ body {
   background: grey;
 }
 
-textarea {
-  width: 20px;
+input[type="text"] {
+    width: 75px;
 }

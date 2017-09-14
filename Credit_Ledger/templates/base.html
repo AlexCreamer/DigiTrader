@@ -39,11 +39,11 @@
     {% block footer %}
     {% if user.is_authenticated %}
         {% csrf_token %}
-        <form action="/user-trade/" method="post">
+        <form action="index.html" method="post">
             {% csrf_token %}
             {{ form }}
-            <label for="User trade">User to trade with</label>
-            <input id="user" type="text" name="user"> <br>
+            <label for="userid">User to trade with</label>
+            <input id="userid" type="text" name="userid"> <br>
             <label>Amount to transfer</label>
             <input id="amount" type="text" name="amount">
             <input type="submit" value="OK">
