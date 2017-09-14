@@ -1,5 +1,5 @@
 # DigiTrader
-A trading platform where people can exchange credits with each under a secure platform
+A secure trading platform where people can exchange virtual currency with each other
 ## Installation instructions for Ubuntu
 
 ### Install the following for Ubuntu
