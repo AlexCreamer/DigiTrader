@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^', include('Credit_Ledger.urls')),
+    url(r'^', include('credits_platform.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('allauth.urls')),
 ]

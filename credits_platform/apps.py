@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class CreditLedgerConfig(AppConfig):
-    name = 'Credit_Ledger'
+    name = 'credits_platform'
 
     def ready(self):
-        import Credit_Ledger.signals.custom_auth
+        import credits_platform.signals.custom_auth
