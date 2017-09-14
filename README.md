@@ -1,4 +1,5 @@
-# Digital Credit Ledger
+# DigiTrader
+A trading platform where people can exchange credits with each under a secure platform
 ## Installation instructions for Ubuntu
 
 ### Install the following for Ubuntu
