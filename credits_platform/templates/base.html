@@ -41,11 +41,10 @@
         {% csrf_token %}
         <form action="index.html" method="post">
             {% csrf_token %}
-            {{ form }}
             <label for="userid">User to trade with</label>
-            <input id="userid" type="text" name="userid"> <br>
+            {{ form.pk }}
             <label>Amount to transfer</label>
-            <input id="amount" type="text" name="amount">
+            {{ form.amount }}
             <input type="submit" value="OK">
         </form>
     {% endif %}
