@@ -20,3 +20,6 @@ You might have to do the following before using runserver:
 Run the following in a python shell   
 `from django.contrib.sites.models import Site   
  Site.objects.create(name='127.0.0.1:8000', domain='localhost')`
+ 
+ Create an admin account
+ `python manage.py createsuperuser`
