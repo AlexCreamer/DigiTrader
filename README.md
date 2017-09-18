@@ -23,3 +23,10 @@ Run the following in a python shell
  
  Create an admin account
  `python manage.py createsuperuser`
+ 
+ make migrations
+ `python manage.py makemigrations
+  python manage.py migrate
+  python manage.py makemigrations credits_platform
+  python manage.py migrate credits_plaform
+ `

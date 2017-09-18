@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'credits_platform.apps.CreditLedgerConfig',
+    'credits_platform.apps.CreditsPlatformConfig',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -152,3 +152,4 @@ EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 EMAIL_PORT = ""
 
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"

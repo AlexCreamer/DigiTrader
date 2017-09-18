@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class CreditLedgerConfig(AppConfig):
+class CreditsPlatformConfig(AppConfig):
     name = 'credits_platform'
 
     def ready(self):
