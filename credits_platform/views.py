@@ -14,7 +14,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 #ex: /account_id/2
 class AccountDetail(generic.DetailView):
-    template_name = "Credit_Ledger/account_details.html"
+    template_name = "credits_platform/account_details.html"
 
     def get_queryset(self):
          account_objects = Account.objects.all()
@@ -35,8 +35,10 @@ class AccountDetail(generic.DetailView):
 
 
 class IndexView(generic.ListView):
-    template_name = "Credit_Ledger/index.html"
+    template_name = "credits_platform/index.html"
     context_object_name = "object_list"
+    form_class = UserForm
+    
 
     def get_queryset(self):
         account_objects = Account.objects.all()
@@ -65,9 +67,19 @@ class IndexView(generic.ListView):
             return context
         else:
             raise Exception("User id is not None and is not greater than 0")
+        
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            return HttpResponseRedirect('/success/')
+
+        return render(request, self.template_name, {'form': form})
+
+
 
 def account_detail(request, account_id):
-    template = loader.get_template("Credit_Ledger/account_id.html")
+    template = loader.get_template("credits_platform/account_id.html")
     context = {
         "account_id" : account_id,
     }
@@ -100,7 +112,7 @@ def user_trade(request):
     else:
         form = UserForm()
 
-    return render(request, 'Credit_Ledger/index.html')
+    return render(request, 'credits_platform/index.html')
 
 @staff_member_required
 def user_grant(request):
@@ -110,3 +122,5 @@ def user_grant(request):
         if form.is_valid():
             pk = form.cleaned_data["pk"]
             amount = form.cleaned_data["amount"]
+            
+
