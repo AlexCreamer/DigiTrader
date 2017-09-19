@@ -38,7 +38,7 @@ class IndexView(generic.ListView):
     template_name = "credits_platform/index.html"
     context_object_name = "object_list"
     form_class = UserForm
-    
+    model = Account
 
     def get_queryset(self):
         account_objects = Account.objects.all()
@@ -74,7 +74,8 @@ class IndexView(generic.ListView):
             # <process form cleaned data>
             return HttpResponseRedirect('/success/')
 
-        return render(request, self.template_name, {'form': form})
+        context = self.get_context_data()
+        return render(request, self.template_name, context)
 
 
 
