@@ -74,6 +74,7 @@ class IndexView(generic.ListView):
             # <process form cleaned data>
             return HttpResponseRedirect('/success/')
 
+        self.object_list = self.get_queryset()
         context = self.get_context_data()
         return render(request, self.template_name, context)
 
@@ -119,9 +120,13 @@ def user_trade(request):
 def user_grant(request):
     if request.method == 'POST':
         form = GrantForm(request.POST)
-
+        print (form.errors)
         if form.is_valid():
             pk = form.cleaned_data["pk"]
             amount = form.cleaned_data["amount"]
             
-
+            a = Account.objects.get(pk=pk)
+            a.balance = a.balance + amount
+            a.save()
+        
+    return render(request, 'credits_platform/user_grant.html')

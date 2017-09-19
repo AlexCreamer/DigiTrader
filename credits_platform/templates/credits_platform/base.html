@@ -16,10 +16,16 @@
     {% if user.is_authenticated %}
         {% trans "Logged in" %}: {{ user.username }}
         (<a href="{% url 'account_logout' %}">{% trans "Log out" %}</a> |
-        <a href="{% url 'account_change_password' %}">{% trans "Change password" %}</a>)
+        <a href="{% url 'account_change_password' %}">{% trans "Change password" %}</a>
+        {% if user.is_staff %}
+        | <a href="{% url 'user-grant' %}">{% trans "User grant" %}</a>
+        {% endif %})
+        
     {% else %}
        <a href="{% url 'account_login' %}">{% trans "Log in" %}</a> | 
        <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>
+        
+
 
     {% endif %}
     <hr />
@@ -38,15 +44,6 @@
     <div id="footer">
     {% block footer %}
     {% if user.is_authenticated %}
-        {% csrf_token %}
-        <form action="/" method="post">
-            {% csrf_token %}
-            <label for="userid">User id to trade with</label>
-            <input id="userid" type="text" name="userid"> <br>
-            <label>Amount to transfer</label>
-            <input id="amount" type="text" name="amount"> 
-            <input type="submit" value="OK">
-        </form>
     {% endif %}
         <hr />
         ---

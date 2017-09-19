@@ -1,0 +1,22 @@
+{% extends "credits_platform/base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css'%}>"
+{% endblock %}
+
+{% block body %}
+
+{% if user.is_staff %}
+        <form action="/user-grant/" method="POST">
+            {% csrf_token %}
+            <label for="userid">User id to grant to</label>
+            <input id="userid" type="text" name="pk"> <br>
+            <label for="amount">Amount to grant</label>
+            <input id="amount" type="text" name="amount"> 
+            <input type="submit" value="OK">
+        </form>
+{% endif %}
+
+{% endblock %}
