@@ -11,16 +11,7 @@
    {% if user.is_authenticated %}
         ID equals {{account_id}} <br> 
         Account type {{account_type}} <br>
-        Balance equals {{balance}} <br>      
-        <form action="/" method="post">
-            {% csrf_token %}
-            <label for="userid">User id to trade with</label>
-            <input id="userid" type="text" name="userid"> <br>
-            <label>Amount to transfer</label>
-            <input id="amount" type="text" name="amount"> 
-            <input type="submit" value="OK">
-        </form>
-  
+        Balance equals {{balance}} <br>        
    {% endif %}
 
   {% if user.is_staff %}

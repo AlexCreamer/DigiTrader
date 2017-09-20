@@ -13,7 +13,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.admin.views.decorators import staff_member_required
 
 #ex: /account_id/2
-class AccountDetail(generic.DetailView):
+class AccountDetailURL(generic.DetailView):
     template_name = "credits_platform/account_details.html"
 
     def get_queryset(self):
@@ -32,7 +32,6 @@ class AccountDetail(generic.DetailView):
         context['balance'] = queryset[0].balance
         context['account_type'] = queryset[0].account_type
         return context
-
 
 class IndexView(generic.ListView):
     template_name = "credits_platform/index.html"
@@ -88,13 +87,15 @@ def account_detail(request, account_id):
     return HttpResponse(template.render(context, request))
     
 def user_trade(request):
+    print ("testing0")
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = UserForm(request.POST)
-
+        print("testing1")
         # check whether it's valid:
         if form.is_valid():
+            print ("testing2")
             # redirect to a new URL:
             pk = form.cleaned_data["pk"]
             amount = form.cleaned_data["amount"]
@@ -107,20 +108,19 @@ def user_trade(request):
                 b = Account.objects.get(pk=pk)
                 b.balance = b.balance + amount
                 b.save()
-
+            print ("testing3")
             return HttpResponseRedirect('/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = UserForm()
-
-    return render(request, 'credits_platform/index.html')
+    print ("testing4")
+    return render(request, 'credits_platform/user_trade.html')
 
 @staff_member_required
 def user_grant(request):
     if request.method == 'POST':
         form = GrantForm(request.POST)
-        print (form.errors)
         if form.is_valid():
             pk = form.cleaned_data["pk"]
             amount = form.cleaned_data["amount"]
@@ -130,3 +130,9 @@ def user_grant(request):
             a.save()
         
     return render(request, 'credits_platform/user_grant.html')
+
+def account_details(request):
+    if request.method == 'POST':
+        form = GrantForm(request.POST)
+        if form.is_valid():
+            pk = form.cleaned_data["pk"]

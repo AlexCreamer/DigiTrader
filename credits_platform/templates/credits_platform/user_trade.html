@@ -1,0 +1,25 @@
+{% extends "credits_platform/base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}>"
+{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <form action="/user-trade" method="post">
+            {% csrf_token %}
+            <label for="userid">User id to trade with</label>
+            <input id="userid" type="text" name="userid"> <br>
+            <label>Amount to transfer</label>
+            <input id="amount" type="text" name="amount"> 
+            <input type="submit" value="OK">
+        </form>
+    {% endif %}
+{% endblock %}
+
+
+{% if user.is_staff %}
+    
+{% endif %}

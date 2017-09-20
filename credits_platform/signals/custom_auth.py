@@ -14,6 +14,6 @@ def add_account_superuser(sender, instance, **kwargs):
     User = get_user_model()
     if isinstance(instance, User):
         if instance.is_superuser:
-            a, created = Account.objects.get_or_create(user=instance, defaults={'balance': 0.0, 'account_type': 'regular'})
+            a, created = Account.objects.get_or_create(user=instance, defaults={'balance': 0.0, 'account_type': 'admin'})
 
 #post_save.connect(add_account_superuser, sender="User")
