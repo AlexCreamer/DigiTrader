@@ -8,3 +8,6 @@ class UserForm(forms.Form):
 class GrantForm(forms.Form):
     pk = forms.IntegerField(label='User to grants credits to', widget=forms.Textarea)
     amount = forms.IntegerField(label='Amount to grant', widget=forms.Textarea)
+    
+class LookUpForm(forms.Form):
+    pk = forms.IntegerField(label='User to grants credits to', widget=forms.Textarea)

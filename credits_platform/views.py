@@ -4,13 +4,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views import generic
-from .forms import UserForm, GrantForm
+from .forms import UserForm, GrantForm, LookUpForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Account
 from django.http import HttpResponseRedirect
 from django.contrib.admin.views.decorators import staff_member_required
+from django.template import Context
 
 #ex: /account_id/2
 class AccountDetailURL(generic.DetailView):
@@ -60,7 +61,7 @@ class IndexView(generic.ListView):
             if queryset == None:
                 return context
             else:
-                context['account_id'] = queryset[0].id
+                context['user_id'] = pk
                 context['balance'] = queryset[0].balance
                 context['account_type'] = queryset[0].account_type
             return context
@@ -87,15 +88,12 @@ def account_detail(request, account_id):
     return HttpResponse(template.render(context, request))
     
 def user_trade(request):
-    print ("testing0")
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = UserForm(request.POST)
-        print("testing1")
         # check whether it's valid:
         if form.is_valid():
-            print ("testing2")
             # redirect to a new URL:
             pk = form.cleaned_data["pk"]
             amount = form.cleaned_data["amount"]
@@ -108,13 +106,11 @@ def user_trade(request):
                 b = Account.objects.get(pk=pk)
                 b.balance = b.balance + amount
                 b.save()
-            print ("testing3")
             return HttpResponseRedirect('/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = UserForm()
-    print ("testing4")
     return render(request, 'credits_platform/user_trade.html')
 
 @staff_member_required
@@ -133,6 +129,13 @@ def user_grant(request):
 
 def account_details(request):
     if request.method == 'POST':
-        form = GrantForm(request.POST)
+        form = LookUpForm(request.POST)
         if form.is_valid():
-            pk = form.cleaned_data["pk"]
+            userid = form.cleaned_data["pk"]
+            
+            a = User.objects.get(pk=userid)
+            context = {"userid": userid, "balance": a.account.balance, "account_type": a.account.account_type}
+            return render(request, 'credits_platform/account_details.html', context)
+
+    return render(request, 'credits_platform/account_details.html')
+

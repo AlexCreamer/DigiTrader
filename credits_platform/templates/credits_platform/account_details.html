@@ -8,10 +8,25 @@
 
 {% block body %}
 
+{% if user.is_authenticated %}
+<form action="/account-details/" method="post">
+    {% csrf_token %}
+    <label for="userid">User id to get account details</label>
+    <input id="userid" type="text" name="pk">
+    <input type="submit" value="OK">
+</form>
+{% endif %}
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-Account Details Page <br>
-Account id = {{account_id}} <br>
-Balance = {{balance}} <br>
-Type = {{account_type}} <br>
+
+{% if userid %}
+    User id = {{userid}} <br>
+{% endif %}
+{% if balance %}
+    Balance = {{balance}} <br>
+{% endif %}
+{% if account_type %}
+    Type = {{account_type}} <br>
+{% endif %}
 
 {% endblock %}

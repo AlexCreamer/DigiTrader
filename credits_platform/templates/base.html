@@ -18,7 +18,7 @@
         (<a href="{% url 'account_logout' %}">{% trans "Log out" %}</a> |
         <a href="{% url 'account_change_password' %}">{% trans "Change password" %}</a> |
         <a href="{% url 'user-trade' %}">{% trans "Trade credits" %}</a> |
-        <a href="{% url 'account_details' %}">{% trans "Show account details" %}</a>
+        <a href="{% url 'account_details' %}">{% trans "User lookup" %}</a>
         {% if user.is_staff %}
         | <a href="{% url 'user-grant' %}">{% trans "Grant credits" %}</a>{% endif %})
     {% else %}
@@ -42,7 +42,7 @@
     {% if user.is_authenticated %}
     {% endif %}
         <hr />
-        ---
+        -
     {% endblock %}
     </div>
         
