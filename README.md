@@ -12,7 +12,8 @@ sudo apt-get install python3-dev postgresql postgresql-contrib django python-dja
 
 `pip install -r requirements`
 
-The default settings.py has `creditsdb` has the database name, `credits` as the user, and `password` as the password
+### Database settings
+Use Postgresql and make sure to configure settings.py for your database
 
 ### Notes
 You might have to do the following before using runserver:
