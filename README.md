@@ -4,7 +4,6 @@ A secure trading platform where people can exchange virtual currency with each o
 
 ### Install the following for Ubuntu
 `sudo apt-get update` `sudo apt-get install python3-dev postgresql postgresql-contrib django python-django-registration`
-`
 
 ### Use the following if you're going to use pip instead of apt-get
 
