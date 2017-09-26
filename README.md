@@ -25,3 +25,6 @@ Run the following in a python shell
  make migrations
  `python manage.py makemigration` `python manage.py migrate` `python manage.py makemigrations credits_platform` `python manage.py migrate credits_plaform`   
  `
+
+change permissions on manage.py
+`chmod +x manage.py`
