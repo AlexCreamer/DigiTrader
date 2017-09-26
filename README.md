@@ -26,5 +26,5 @@ Run the following in a python shell
  `python manage.py createsuperuser`
  
  make migrations
- `python manage.py makemigration' `python manage.py migrate` `python manage.py makemigrations credits_platform` `python manage.py migrate credits_plaform`   
+ `python manage.py makemigration` `python manage.py migrate` `python manage.py makemigrations credits_platform` `python manage.py migrate credits_plaform`   
  `
