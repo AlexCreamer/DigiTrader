@@ -7,7 +7,7 @@ A secure trading platform where people can exchange virtual currency with each o
 
 ### Use the following if you're going to use pip instead of apt-get
 
-`pip install -r requirements`
+`pip install -r requirements.txt`
 
 ### Database settings
 Use Postgresql and make sure to configure settings.py for your database
