@@ -9,6 +9,11 @@ A secure trading platform where people can exchange virtual currency with each o
 
 `pip install -r requirements.txt`
 
+### Virtual environment instructions
+`pip install virtualenv`   
+`virtualenv mysiteenv`   
+`source mysiteenv/bin/activate`   
+
 ### Database settings
 Use Postgresql and make sure to configure settings.py for your database
 
