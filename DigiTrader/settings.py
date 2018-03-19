@@ -96,6 +96,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': "creditsdb",
         'USER': 'credits',
+        'HOST': 'localhost',
         'PASSWORD' : 'password'
     }
 }
