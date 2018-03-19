@@ -15,10 +15,10 @@ A secure trading platform where people can exchange virtual currency with each o
 `source mysiteenv/bin/activate`   
 
 ### Database settings
-You can use the database of your choice but this program defaults to using postgresql   
-Don't forget to configure settings.py to input your database settings.   
-Default database name: creditsdb 
-Default database user: credits  
+You can use the database of your choice but this program defaults to using postgresql.    
+Don't forget to configure settings.py to input your database settings.     
+Default database name: creditsdb    
+Default database user: credits    
 Default database password: password    
 
 
