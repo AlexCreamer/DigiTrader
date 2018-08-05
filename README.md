@@ -1,3 +1,5 @@
+# The following installation instructions have been deprecated
+
 # DigiTrader
 A secure trading platform where people can exchange virtual currency with each other
 ## Installation instructions for Ubuntu
